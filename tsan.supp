@@ -1,0 +1,4 @@
+# CATCH is not threadsafe
+race:Catch::AssertionResult::operator=(Catch::AssertionResult const&)
+race:Catch::AssertionInfo::operator=(Catch::AssertionInfo const&)
+race:Catch::RunContext::acceptExpression(Catch::ExpressionResultBuilder const&, Catch::AssertionInfo const&)
