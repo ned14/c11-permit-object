@@ -56,6 +56,32 @@ DEALINGS IN THE SOFTWARE.
 #include <threads.h>
 typedef atomic_uint atomic_uint_c11_compat;
 
+// If we have GCC 4.9, we have C11 atomics and enough of C11 threads it compiles
+#elif __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)
+
+#include <stdatomic.h>
+#include <pthread.h>
+typedef atomic_uint atomic_uint_c11_compat;
+
+enum mtx_types
+{
+  mtx_plain=0,
+  mtx_recursive=1,
+  mtx_timed=2
+};
+
+enum thrd_results
+{
+  thrd_success=0,
+  thrd_timeout=ETIMEDOUT,
+  thrd_busy=EBUSY,
+  thrd_error=EINVAL,
+  thrd_nomem=ENOMEM
+};
+
+typedef pthread_cond_t cnd_t;
+typedef pthread_mutex_t mtx_t;
+
 #else // Need to fake C11 support using a mixture of C++ and OS calls
 
 #ifdef _MSC_VER

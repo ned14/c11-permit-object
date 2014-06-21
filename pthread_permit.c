@@ -464,7 +464,7 @@ PTHREAD_PERMIT_API_DEFINE(int , permittype##_timedwait_locked_grant, (pthread_##
   return pthread_permit_timedwait((pthread_permit_t *) permit, mtx, ts, 1); \
 }
 #define PERMIT_IMPL(permittype) \
-PTHREAD_PERMIT_API_DEFINE(int, permittype##_init, (pthread_##permittype##_t *permit, _Bool initial, void *)) \
+PTHREAD_PERMIT_API_DEFINE(int, permittype##_init, (pthread_##permittype##_t *permit, _Bool initial, void *attr)) \
 { \
   VALGRIND_MAKE_MEM_DEFINED(&permit->magic, sizeof(permit->magic)); \
   if(PERMIT_MAGIC==((pthread_permit_t *) permit)->magic) return thrd_busy; \

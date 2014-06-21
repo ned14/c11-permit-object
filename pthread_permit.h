@@ -518,7 +518,7 @@ inline cnd_t *pthread_permit_get_internal_cond(pthread_permitX_t _permit)
   return &permit->cond;
 }
 
-int pthread_permit1_init(pthread_permit1_t *permit, _Bool initial, void *)
+int pthread_permit1_init(pthread_permit1_t *permit, _Bool initial, void *attr)
 {
   int ret;
 #ifdef VALGRIND_MAKE_MEM_DEFINED
