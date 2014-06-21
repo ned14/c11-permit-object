@@ -1,0 +1,13 @@
+#{
+#  ignore_catch
+#  Memcheck:Leak
+#  
+#}
+
+{
+   ignore_magic_check
+   Memcheck:Cond
+   fun:pthread_permit1_init
+   ...
+}
+
