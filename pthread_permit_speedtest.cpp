@@ -149,11 +149,11 @@ int main(void)
   timingoverhead/=5000000;
   printf("Timing overhead on this machine is %u us. Go!\n", (unsigned) timingoverhead);
 
-  pthread_permit1_init(&permit1, 1);
+  pthread_permit1_init(&permit1, 1, NULL);
   permitaddr=&permit1;
   for(n=0; n<THREADS; n++)
   {
-    thrd_create(&threads[n], (thrd_start_t) threadfunc<pthread_permit1_t, pthread_permit1_grant, pthread_permit1_revoke, pthread_permit1_wait>, (void *)(size_t)n);
+    thrd_create(&threads[n], (thrd_start_t) threadfunc<pthread_permit1_t, pthread_permit1_grant, pthread_permit1_revoke, pthread_permit1_wait_np>, (void *)(size_t)n);
   }
   printf("Press key to kill all\n");
   getchar();
